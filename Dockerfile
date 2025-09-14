@@ -76,7 +76,9 @@ COPY --from=build /myapp /myapp
 RUN gem install bundler -v 2.5.23
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
-  chown -R rails:rails db log storage tmp
+  mkdir -p /myapp/db /myapp/log /myapp/storage /myapp/tmp && \
+  chown -R rails:rails /myapp/db /myapp/log /myapp/storage /myapp/tmp
+
 USER rails:rails
 
 
