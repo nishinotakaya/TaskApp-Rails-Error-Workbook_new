@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :correct_user
   
   def index
-    @tasks = @user.tasks
+    @task = @user.tasks
   end
 
   def show
