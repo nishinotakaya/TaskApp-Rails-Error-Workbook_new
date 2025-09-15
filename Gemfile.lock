@@ -160,6 +160,7 @@ GEM
     minitest (5.25.5)
     msgpack (1.8.0)
     mutex_m (0.3.0)
+    mysql2 (0.5.6)
     net-imap (0.4.22)
       date
       net-protocol
@@ -294,6 +295,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails (~> 4.6)
   listen (~> 3.8)
+  mysql2 (~> 0.5)
   popper_js (~> 1.16.0)
   puma (>= 5.0)
   rails (~> 7.1.0)
