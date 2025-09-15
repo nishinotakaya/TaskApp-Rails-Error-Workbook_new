@@ -28,11 +28,14 @@ RUN apt-get update -qq && \
   pkg-config \
   nodejs \
   npm \
-  bash && \
+  bash \
+  gcc \
+  g++ \
+  make && \
   npm install -g yarn && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
-# Bundler を固定（Gemfile.lock の 2.x 系想定。必要に応じて合わせてOK）
+# Bundler を固定
 RUN gem install bundler -v 2.5.23
 
 # 依存だけ先にコピーして bundle install のキャッシュを効かせる
@@ -44,12 +47,7 @@ RUN bundle install && \
 # アプリ本体をコピー
 COPY . .
 
-
 RUN bundle exec bootsnap precompile app/ lib/ || true
-
-# （開発なので assets:precompile は不要。必要なら明示的に有効化）
-# RUN SECRET_KEY_BASE_DUMMY=1 RAILS_ENV=development bundle exec rails assets:precompile
-
 
 # --------------------------
 # Runtime stage（実行用・軽量）
@@ -62,10 +60,13 @@ RUN apt-get update -qq && \
   curl \
   default-mysql-client \
   libvips \
-  bash && \
+  bash \
+  nodejs \
+  npm && \
+  npm install -g yarn && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
-# Bundler は runtime 側にも入れておく（bundle exec 用）
+# Bundler は runtime 側にも入れておく
 RUN gem install bundler -v 2.5.23
 
 # build で作った gem とアプリ本体をコピー
