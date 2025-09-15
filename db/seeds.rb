@@ -19,7 +19,7 @@ end
 puts "Users Created"
 
 admin_user = User.first
-guest_user = User.find(2)
+guest_user = User.find_by(2)
 
 50.times do |n|
   task_name = "タスク#{n + 1}"
