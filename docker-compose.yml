@@ -3,37 +3,39 @@ version: "3.8"
 services:
   db:
     image: mysql:5.7
-    platform: linux/amd64
+    platform: linux/amd64 # Apple Silicon でも 5.7 を動かすため
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: app_development
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
     ports:
       - "3367:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppassword"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - task_network
 
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -lc "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+      target: runtime # 実行用ステージで起動
     volumes:
-      - .:/myapp
+      - .:/myapp # 開発ホットリロード用（エントリポイントは上書きされない）
     ports:
-      - "3107:3000"
+      - "3115:3000"
     depends_on:
       db:
         condition: service_healthy
     tty: true
     stdin_open: true
+    networks:
+      - task_network
 
 volumes:
   mysql_data:
