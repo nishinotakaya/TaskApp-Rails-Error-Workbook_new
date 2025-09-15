@@ -24,9 +24,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: runtime # 実行用ステージで起動
+      target: runtime
     volumes:
-      - .:/myapp # 開発ホットリロード用（エントリポイントは上書きされない）
+      - .:/myapp
+      - /myapp/node_modules
+      - /myapp/tmp
+      - /myapp/log
     ports:
       - "3115:3000"
     depends_on:
@@ -34,6 +37,9 @@ services:
         condition: service_healthy
     tty: true
     stdin_open: true
+    environment:
+      - RAILS_ENV=development
+      - RAILS_SERVE_STATIC_FILES=true
     networks:
       - task_network
 
