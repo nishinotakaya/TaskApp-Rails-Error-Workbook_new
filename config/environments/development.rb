@@ -50,7 +50,8 @@ Rails.application.configure do
 
   # Use a file watcher to detect changes in source code,
   # routes, locales, etc. This works better in Docker containers.
-  config.file_watcher = ActiveSupport::FileUpdateChecker
+  # config.file_watcher = ActiveSupport::FileUpdateChecker
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   # Force reload on every request in development (for Docker)
   config.reload_classes_only_on_change = true
