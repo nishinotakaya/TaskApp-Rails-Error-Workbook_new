@@ -54,7 +54,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   # Force reload on every request in development (for Docker)
-  config.reload_classes_only_on_change = false
+  config.reload_classes_only_on_change = true
   
   # Enable live reload for Docker development
   config.force_ssl = false
