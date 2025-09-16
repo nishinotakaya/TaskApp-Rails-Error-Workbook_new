@@ -54,4 +54,10 @@ Rails.application.configure do
   
   # Force reload on every request in development (for Docker)
   config.reload_classes_only_on_change = false
+  
+  # Enable live reload for Docker development
+  config.force_ssl = false
+  
+  # Disable bootsnap cache in development for better file watching
+  config.bootsnap = false if defined?(Bootsnap)
 end
