@@ -40,6 +40,8 @@ services:
     environment:
       - RAILS_ENV=development
       - RAILS_SERVE_STATIC_FILES=true
+      - BOOTSNAP_DISABLE=true
+      - RAILS_LOG_TO_STDOUT=true
     networks:
       - task_network
 
