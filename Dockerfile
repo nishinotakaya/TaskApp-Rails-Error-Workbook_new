@@ -47,7 +47,8 @@ RUN bundle install && \
 # アプリ本体をコピー
 COPY . .
 
-RUN bundle exec bootsnap precompile app/ lib/ || true
+# Docker環境ではbootsnapのプリコンパイルを無効にしてコードリロードを確実にする
+# RUN bundle exec bootsnap precompile app/ lib/ || true
 
 # --------------------------
 # Runtime stage（実行用・軽量）
