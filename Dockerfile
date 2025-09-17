@@ -61,4 +61,4 @@ WORKDIR /myapp
 
 EXPOSE 3000
 # Spring を避けるため bin/rails は使わず bundle exec を明示
-CMD ["bash", "-lc", "bundle exec rails s -b 0.0.0.0 -p 3000"]
+CMD ["bash", "-lc", "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p 3000"]
