@@ -290,6 +290,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bigdecimal (~> 3.1)
   bootsnap
   bootstrap (~> 4.6, >= 4.6.2)
   capybara
