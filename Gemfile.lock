@@ -83,6 +83,7 @@ GEM
     autoprefixer-rails (10.4.21.0)
       execjs (~> 2)
     base64 (0.3.0)
+    bcrypt (3.1.20)
     benchmark (0.4.1)
     bigdecimal (3.2.3)
     bindex (0.8.1)
@@ -121,6 +122,8 @@ GEM
       cgi (>= 0.3.3)
     erubi (1.13.1)
     execjs (2.10.0)
+    faker (3.5.2)
+      i18n (>= 1.8.11, < 2)
     ffi (1.17.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -286,11 +289,13 @@ PLATFORMS
   aarch64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 4.6, >= 4.6.2)
   capybara
   coffee-rails (~> 5.0)
   debug
+  faker (~> 3.0)
   importmap-rails
   jbuilder
   jquery-rails (~> 4.6)
