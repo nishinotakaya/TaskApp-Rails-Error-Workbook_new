@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile
       target: runtime
     volumes:
-      - .:/myapp                 # ← これだけ（匿名ボリュームで上書きしない）
+      - .:/errro_app
     ports:
       - "3115:3000"
     depends_on:
