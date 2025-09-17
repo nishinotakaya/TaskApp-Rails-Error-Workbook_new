@@ -21,20 +21,16 @@ FROM base AS build
 # 必要パッケージ（gem ビルド系 / MySQL / Node / Yarn）
 RUN apt-get update -qq && \
   apt-get install --no-install-recommends -y \
-  build-essential \
-  default-libmysqlclient-dev \
-  libpq-dev \
-  git \
+  curl \
+  default-mysql-client \
   libvips \
-  pkg-config \
+  bash \
   nodejs \
   npm \
-  bash \
-  gcc \
-  g++ \
-  make && \
+  || apt-get install --fix-missing -y && \
   npm install -g yarn && \
   rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
 
 # Bundler を固定
 RUN gem install bundler -v 2.5.23
