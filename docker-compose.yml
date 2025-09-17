@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: myapp_development   # ← database.yml と一致させる
+      MYSQL_DATABASE: myapp_development
     ports:
       - "3367:3306"
     volumes:
@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile
       target: runtime
     volumes:
-      - .:/errro_app
+      - .:/myapp
     ports:
       - "3115:3000"
     depends_on:
@@ -35,7 +35,7 @@ services:
     stdin_open: true
     environment:
       RAILS_ENV: development
-      DISABLE_BOOTSNAP: "1"      # ← 正しい無効化フラグ
+      DISABLE_BOOTSNAP: "1" # ← 正しい無効化フラグ
       DISABLE_SPRING: "1"
       RAILS_SERVE_STATIC_FILES: "true"
       RAILS_LOG_TO_STDOUT: "true"

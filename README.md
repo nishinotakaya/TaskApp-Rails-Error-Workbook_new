@@ -53,4 +53,15 @@ $ docker compose down -v && docker compose up -d
 docker compose exec web bin/spring stop
 docker compose exec web bin/rails tmp:clear
 docker compose exec web rm -f tmp/pids/server.pid
+docker compose down -v
+docker volume prune -f
+docker network prune -f
+docker system prune -a --volumes -f
 ```
+
+docker compose exec web bin/spring stop
+キャッシュ削除
+
+bash
+コードをコピーする
+docker compose exec web bash -lc 'rm -rf tmp/cache'
