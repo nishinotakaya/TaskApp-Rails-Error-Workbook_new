@@ -29,6 +29,7 @@ gem "bootsnap", require: false
 
 
 group :development, :test do
+  gem 'faker', '~> 3.0'
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 end
 
