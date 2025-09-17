@@ -1,12 +1,11 @@
 version: "3.8"
-
 services:
   db:
     image: mysql:5.7
-    platform: linux/amd64 # Apple Silicon でも 5.7 を動かすため
+    platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: app_development
+      MYSQL_DATABASE: app_development   # ← database.yml と合わせる
     ports:
       - "3367:3306"
     volumes:
@@ -27,9 +26,6 @@ services:
       target: runtime
     volumes:
       - .:/myapp
-      - /myapp/node_modules
-      - /myapp/tmp
-      - /myapp/log
     ports:
       - "3115:3000"
     depends_on:
@@ -38,10 +34,10 @@ services:
     tty: true
     stdin_open: true
     environment:
-      - RAILS_ENV=development
-      - RAILS_SERVE_STATIC_FILES=true
-      - BOOTSNAP_DISABLE=true
-      - RAILS_LOG_TO_STDOUT=true
+      RAILS_ENV: development
+      RAILS_SERVE_STATIC_FILES: "true"
+      BOOTSNAP_DISABLE: "true"
+      RAILS_LOG_TO_STDOUT: "true"
     networks:
       - task_network
 
