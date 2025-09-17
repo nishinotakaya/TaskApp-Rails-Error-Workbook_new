@@ -46,3 +46,11 @@ $ docker compose down -v && docker compose up -d
 
 - **email** : sample@email.com
 - **password** : password
+
+反映されない場合
+
+```
+docker compose exec web bin/spring stop
+docker compose exec web bin/rails tmp:clear
+docker compose exec web rm -f tmp/pids/server.pid
+```
