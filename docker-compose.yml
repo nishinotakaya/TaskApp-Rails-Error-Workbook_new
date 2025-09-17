@@ -1,11 +1,12 @@
 version: "3.8"
+
 services:
   db:
     image: mysql:5.7
     platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: app_development   # ← database.yml と合わせる
+      MYSQL_DATABASE: myapp_development   # ← database.yml と一致させる
     ports:
       - "3367:3306"
     volumes:
@@ -16,8 +17,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - task_network
+    networks: [task_network]
 
   web:
     build:
@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile
       target: runtime
     volumes:
-      - .:/myapp
+      - .:/myapp                 # ← これだけ（匿名ボリュームで上書きしない）
     ports:
       - "3115:3000"
     depends_on:
@@ -35,11 +35,11 @@ services:
     stdin_open: true
     environment:
       RAILS_ENV: development
+      DISABLE_BOOTSNAP: "1"      # ← 正しい無効化フラグ
+      DISABLE_SPRING: "1"
       RAILS_SERVE_STATIC_FILES: "true"
-      BOOTSNAP_DISABLE: "true"
       RAILS_LOG_TO_STDOUT: "true"
-    networks:
-      - task_network
+    networks: [task_network]
 
 volumes:
   mysql_data:
