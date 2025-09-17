@@ -73,7 +73,6 @@ RUN gem install bundler -v 2.5.23
 
 # build で作った gem とアプリ本体をコピー
 COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /myapp /myapp
 
 # 非rootユーザー
 RUN useradd rails --create-home --shell /bin/bash && \
