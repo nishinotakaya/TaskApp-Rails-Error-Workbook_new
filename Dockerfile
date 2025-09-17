@@ -79,13 +79,9 @@ RUN useradd rails --create-home --shell /bin/bash && \
   mkdir -p /myapp/db /myapp/log /myapp/storage /myapp/tmp && \
   chown -R rails:rails /myapp
 
-COPY bin/docker-entrypoint.sh /usr/local/bin/rails-entrypoint
-RUN chmod 755 /usr/local/bin/rails-entrypoint
 
 USER rails:rails
 WORKDIR /myapp
-
-ENTRYPOINT ["/usr/local/bin/rails-entrypoint"]
 
 EXPOSE 3000
 CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]
