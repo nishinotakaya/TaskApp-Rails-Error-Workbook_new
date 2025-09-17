@@ -17,6 +17,7 @@ $ git clone https://github.com/sample-874/sample-app.git
 次のコマンドで必要になる RubyGems をインストールします。
 
 ```
+$ docker compose build web --no-cache
 $ docker compose run --rm -u root web bundle install
 ```
 
