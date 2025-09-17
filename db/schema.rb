@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2019_07_05_170235) do
-  create_table "tasks", charset: "utf8mb4", force: :cascade do |t|
+  create_table "tasks", charset: "latin1", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.bigint "user_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2019_07_05_170235) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "latin1", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", precision: nil, null: false

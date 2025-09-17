@@ -26,7 +26,7 @@ group :development do
   gem 'listen', '~> 3.8'
 end
 
-gem "bootsnap", require: false
+# gem "bootsnap", require: false
 
 
 group :development, :test do
