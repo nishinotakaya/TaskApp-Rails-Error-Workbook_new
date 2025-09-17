@@ -5,6 +5,7 @@ services:
     image: mysql:5.7
     platform: linux/amd64 # Apple Silicon でも 5.7 を動かすため
     environment:
+      RAILS_ENV: development
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: app_development
     ports:
@@ -27,9 +28,6 @@ services:
       target: runtime
     volumes:
       - .:/myapp
-      - /myapp/node_modules
-      - /myapp/tmp
-      - /myapp/log
     ports:
       - "3115:3000"
     depends_on:
