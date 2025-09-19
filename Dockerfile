@@ -51,6 +51,7 @@ RUN gem install bundler -v 2.5.23
 
 # build で作った bundle をコピー
 COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY . .
 
 # 非 root
 RUN useradd -m -s /bin/bash rails && \
