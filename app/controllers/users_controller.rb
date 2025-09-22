@@ -4,11 +4,11 @@ class UsersController < ApplicationController
   before_action :admin_user, only: %i(index destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_or_correct, only: %i(show)
-  
+
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
   end
-  
+
   def show
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
     @user = User.new
   end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     case @user.id
     when 1, 2, 3
@@ -38,16 +38,16 @@ class UsersController < ApplicationController
       redirect_to @user
     end
   end
-  
+
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to @user
     else
-      render :edit      
+      render :edit
     end
   end
-  
+
   def destroy
     case @user.id
     when 1, 2, 3
@@ -59,13 +59,13 @@ class UsersController < ApplicationController
       redirect_to users_url
     end
   end
-  
+
   private
-  
+
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-    
+
     def set_user
       @user = User.find(params[:id])
     end
